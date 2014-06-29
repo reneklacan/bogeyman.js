@@ -1,0 +1,27 @@
+{
+  "author": "Rene Klacan",
+  "name": "bogeyman",
+  "description": "",
+  "version": "0.0.2",
+  "repository": {
+    "url": "https://github.com/reneklacan/bogeyman.js"
+  },
+  "main": "./lib/bogeyman",
+  "keywords": [
+    "scraping",
+    "crawler",
+    "phantomjs",
+    "api"
+  ],
+  "bin": {
+    "bogeyman": "./bin/bogeyman"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+    "phantom": "0.6.3"
+  },
+  "engines": {
+    "node": "*"
+  }
+}

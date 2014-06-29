@@ -1,17 +1,36 @@
 # Bogeyman.js
 
+Bogeyman is application build upon awesome PhantomJS and it provides
+REST API so you can use PhantomJS headless crawling of heavy javascript
+webspages within any programming language or curl.
+
+## Installation
+
+You can install it globally
+
+```bash
+npm install -g bogeyman
+```
+
+Or locally
+
+```bash
+npm install bogeyman
+```
+
 ## Usage
 
 Run server
 
 ```bash
-node bogeyman.js
+bogeyman 31313 # if you installed it via npm install
+node ./bin/bogeyman 31313 # if you cloned a repo
 ```
 
 Make a request
 
 ```bash
-curl -XGET "localhost:8080" --data '
+curl -XGET "localhost:31313" --data '
 {
   "url": "http://yuna.sk",
   "method": "GET",
@@ -41,4 +60,4 @@ TBD
 
 ## License
 
-TBD
+This library is distributed under the Beerware license.
