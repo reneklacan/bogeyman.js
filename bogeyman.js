@@ -8,7 +8,21 @@ http.createServer(function(request, response) {
   response.writeHead(200);
 
   request.on('data', function(message) {
-    var command = JSON.parse(message.toString('utf-8'));
+    try {
+      var command = JSON.parse(message.toString('utf-8'));
+    }
+    catch (e) {
+      if (e instanceof SyntaxError) {
+        response.write(JSON.stringify({
+          status: 'invalid command',
+          response: null,
+        }));
+        response.end();
+        return;
+      } else {
+        throw e; // let others bubble up
+      }
+    }
 
     var defaultParams = {
       method: 'GET',
@@ -27,10 +41,7 @@ http.createServer(function(request, response) {
       params.params[attr] = command.params[attr];
     }
 
-    console.log(command);
-
     ['url', 'method', 'data'].forEach(function(attr) {
-      console.log(command[attr]);
       if (command[attr] === undefined)
         return;
 
@@ -56,8 +67,7 @@ http.createServer(function(request, response) {
         }
       })
 
-      console.log(command.url)
-      console.log(params);
+      console.log(params.url);
 
       page.open(params.url, params.method, params.data, function (status) {
         if (status == "success") {
@@ -72,21 +82,20 @@ http.createServer(function(request, response) {
               };
             },
             function(result) {
-              response.write(JSON.stringify(result));
+              response.write(JSON.stringify(result, null, 2));
               response.end();
             },
             {
-              //code: page.additional.status
+              code: page.additional.status
             }
           )
           page.close();
         }
         else {
-          console.log('fail');
           response.write(JSON.stringify({
             status: status,
             response: null,
-          }));
+          }, null, 2));
           response.end();
         }
       })
