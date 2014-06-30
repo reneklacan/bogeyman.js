@@ -4,6 +4,9 @@ Bogeyman is application build upon awesome PhantomJS and it provides
 REST API so you can use PhantomJS headless crawling of heavy javascript
 webspages within any programming language or curl.
 
+Clients:
+* [Ruby client](https://github.com/reneklacan/bogeyman-ruby-client)
+
 ## Installation
 
 You can install it globally
