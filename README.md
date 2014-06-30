@@ -30,7 +30,7 @@ node ./bin/bogeyman 31313 # if you cloned a repo
 Make a request
 
 ```bash
-curl -XGET "localhost:31313" --data '
+curl -XPOST "localhost:31313" --data '
 {
   "url": "http://yuna.sk",
   "method": "GET",
@@ -52,6 +52,29 @@ And get result
   },
   "status": "success"
 } 
+```
+
+## Cookies
+
+```bash
+curl -XPOST "localhost:31313" --data '
+{
+  "url": "http://yuna.sk",
+  "method": "GET",
+  "data": {},
+  "cookies": [
+    {
+      "name": "test",
+      "value": "test",
+      "domain": "yuna.sk",
+      "path": "/path",
+      "httponly": false,
+      "secure": false,
+      "expires": 1405164630
+    }
+  ]
+}
+'
 ```
 
 ## Advanced
